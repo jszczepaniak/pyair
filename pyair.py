@@ -22,10 +22,11 @@ def refresh():
     philipsData = airctrl.get_raw()
     txtPm25.delete(0, END)
     txtAler.delete(0, END)
+    txtBright.delete(0, END)
 
     txtPm25.insert(0, philipsData['pm25'])
     txtAler.insert(0, philipsData['iaql'])
-
+    txtBright.insert(0, philipsData['aqil'])
 
 window = Tk()
 window.title('pyair')
@@ -42,8 +43,14 @@ lblAler.grid(column=0, row=1)
 txtAler = Entry(window, width=3)
 txtAler.grid(column=1, row=1)
 
+lblBright = Label(window, text='Jasność wyświetlacza: ')
+lblBright.grid(column=0, row=2)
+
+txtBright = Entry(window, width=3)
+txtBright.grid(column=1, row=2)
+
 btnRefresh = Button(window, text='Odśwież', anchor="w", command=refresh)
-btnRefresh.grid(column=0, row=2, sticky='w')
+btnRefresh.grid(column=0, row=3, sticky='w')
 
 refresh()
 window.mainloop()
